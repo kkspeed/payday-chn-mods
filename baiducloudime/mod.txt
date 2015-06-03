@@ -1,0 +1,34 @@
+{
+	"name" : "BaiduCloudIME",
+	"author" : "leilmyxwz",
+	"contact" : "贴吧私信leilmyxwz",
+	"version" : "0.1",
+	"priority" : 11,
+	"updates" : [{
+        "revision" : 1,
+        "identifier" : "baiducloudime",
+       	"install_dir" : "mods",
+        "install_folder" : "baiducloudime",
+        "display_name" : "baiducloudime"
+
+    }],
+	"hooks" : [
+        {
+            "hook_id" : "lib/managers/chatmanager",
+            "script_path" : "lua/BaiduCloudIME.lua"
+        },
+        {
+            "hook_id" : "lib/managers/hud/hudchat",
+            "script_path" : "lua/BaiduCloudIMEHudChat.lua"
+        }
+    ],
+	"keybinds" : [{
+		"keybind_id" : "Baidu_Cloud_IME_Enable",
+		"name" : "输入法启动热键",
+		"description" : "是否启动输入法",
+		"script_path" : "lua/ime_toggle.lua",
+		"run_in_menu" : true,
+		"run_in_game" : true,
+		"localized" : false
+	}]
+}

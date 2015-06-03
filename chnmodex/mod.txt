@@ -1,0 +1,38 @@
+{
+	"name" : "ChnModEx",
+	"author" : "leilmyxwz",
+	"contact" : "leilmyxwz@126.com",
+	"version" : "0.1",
+	"priority" : 11,
+	"updates" : [{
+        "revision" : 1,
+        "identifier" : "chnmodex",
+       	"install_dir" : "mods",
+        "install_folder" : "chnmodex",
+        "display_name" : "chnmodex"
+
+    }],
+	"hooks" : [{
+        "hook_id" : "lib/managers/chatmanager",
+        "script_path" : "lua/ChnModExTranslation.lua"
+	}],
+	"keybinds" : [
+        {
+		    "keybind_id" : "CHN_Translate_Enable",
+		    "name" : "自动翻译玩家对话热键",
+		    "description" : "是否自动翻译玩家对话",
+		    "script_path" : "lua/translation_toggle.lua",
+		    "run_in_menu" : true,
+		    "run_in_game" : true,
+		    "localized" : false
+	    },
+        {
+		    "keybind_id" : "CHN_Translate_Out_Enable",
+		    "name" : "传出对话翻译热键",
+		    "description" : "是否自动传出翻译",
+		    "script_path" : "lua/sendout_translation_toggle.lua",
+		    "run_in_menu" : true,
+		    "run_in_game" : true,
+		    "localized" : false
+	    }]
+}
