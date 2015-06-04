@@ -1,7 +1,4 @@
-local API_KEY = ""  -- Edit this line to paste your Baidu App API
--- _G.ChnModTranslation = _G.ChnModTranslation or false
-
-json = require("json")
+local API_KEY = ""
 
 translateFrom = "auto"
 

@@ -15,3 +15,4 @@ end
 imeMode = "INPUT"
 imeCandidates = {}
 imeInputBuffer = ""
+imeCandStart = 1

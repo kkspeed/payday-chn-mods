@@ -1,4 +1,4 @@
-json = require("json")
+-- json = require("json")
 
 function escape (s)
    s = string.gsub(s, "([&=+%c])", function (c)
