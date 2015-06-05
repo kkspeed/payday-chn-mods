@@ -4,9 +4,13 @@ This repo contains my own Payday 2 lua mods for Chinese localization.
 ## Baidu Cloud IME
 This mod allows you to use Baidu Cloud IME to type Chinese characters in game play.
 
+![](https://github.com/kkspeed/payday-chn-mods/blob/master/images/ime_show.png)
+
 ## ChnModEx
 This mod can translate player chatting on the fly.
 
+![](https://github.com/kkspeed/payday-chn-mods/blob/master/images/translate_show.png)
+![](https://github.com/kkspeed/payday-chn-mods/blob/master/images/out_translate.png)
 
 ## Installation
 You are required to install [BLT](http://paydaymods.com/download/) first.

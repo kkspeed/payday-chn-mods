@@ -2,7 +2,7 @@
 	"name" : "BaiduCloudIME",
 	"author" : "leilmyxwz",
 	"contact" : "贴吧私信leilmyxwz",
-	"version" : "0.1",
+	"version" : "0.2",
 	"priority" : 11,
 	"updates" : [{
         "revision" : 1,

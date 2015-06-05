@@ -2,7 +2,7 @@
 	"name" : "ChnModEx",
 	"author" : "leilmyxwz",
 	"contact" : "leilmyxwz@126.com",
-	"version" : "0.1",
+	"version" : "0.2",
 	"priority" : 11,
 	"updates" : [{
         "revision" : 1,
