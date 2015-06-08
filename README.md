@@ -21,4 +21,6 @@ corresponding configurations below.
 Bind a key in "mod options". You can enable / disable the IME in game.
 
 ### ChnModEx
-FIXME!
+Drop ChnModEx to your mods folder. In the game, under options -> mod keybindings, 
+bind a key to toggle translating received message and key to toggle outgoing message.
+under options -> mod options, you can set your own language.
