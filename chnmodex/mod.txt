@@ -2,7 +2,7 @@
 	"name" : "ChnModEx",
 	"author" : "leilmyxwz",
 	"contact" : "leilmyxwz@126.com",
-	"version" : "0.2",
+	"version" : "0.1",
 	"priority" : 11,
 	"updates" : [{
         "revision" : 1,
@@ -12,10 +12,15 @@
         "display_name" : "chnmodex"
 
     }],
-	"hooks" : [{
-        "hook_id" : "lib/managers/chatmanager",
-        "script_path" : "lua/ChnModExTranslation.lua"
-	}],
+	"hooks" : [
+        {
+            "hook_id" : "lib/managers/chatmanager",
+            "script_path" : "lua/ChnModExTranslation.lua"
+	    },
+        {
+            "hook_id" : "lib/managers/menumanager",
+            "script_path" : "lua/ChnModExMenu.lua"
+        }],
 	"keybinds" : [
         {
 		    "keybind_id" : "CHN_Translate_Enable",

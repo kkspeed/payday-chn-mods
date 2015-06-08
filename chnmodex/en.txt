@@ -1,0 +1,8 @@
+{
+	"chnmodex_custom_menu" : "Translation Options",
+	"chnmodex_custom_menu_desc" : "Translation Mod Options.",
+	"chnmodex_language_default" : "Your Language",
+	"chnmodex_language_default_desc" : "Other languages will be translated to this one",
+	"chnmodex_language_english" : "English",
+	"chnmodex_language_chinese" : "Simplified Chinsese"
+}

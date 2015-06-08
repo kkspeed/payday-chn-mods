@@ -1,0 +1,21 @@
+{
+	"menu_id" : "chnmodex_menu",
+	"parent_menu_id" : "lua_mod_options_menu",
+	"title" : "chnmodex_custom_menu",
+	"description" : "chnmodex_custom_menu_desc",
+	"items" : [
+		{
+			"type" : "multiple_choice",
+			"id" : "chnmodex_language_mutli",
+			"title" : "chnmodex_language_default",
+			"description" : "chnmodex_language_default_desc",
+			"callback" : "chnmodex_language_set_default",
+			"items" : [
+                "chnmodex_language_english",
+                "chnmodex_language_chinese"
+			],
+			"value" : "chnmodex_default_lang_value",
+			"default_value" : 1,
+		}
+	]
+}

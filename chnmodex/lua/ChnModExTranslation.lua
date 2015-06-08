@@ -1,10 +1,13 @@
-local API_KEY = ""
--- _G.ChnModTranslation = _G.ChnModTranslation or false
+local translationData = {}
+local confFile = io.open(ModPath .. "chnmodex_save_data.txt")
+if confFile then
+   translationData = json.decode(confFile:read("*all"))
+   confFile:close()
+end
 
--- json = require("json")
+translateFrom = "en"
+translateTo = translateTo or translationData.chnmodex_default_lang or "zh-CHS"
 
-
-translateFrom = "auto"
 local Net = _G.LuaNetworking
 
 function escape (s)
@@ -33,16 +36,18 @@ function displayMessage(channel_id, name, msg, color, icon)
 end
 
 function lookupTranslation(channel_id, name, msg, color, icon)
-   dohttpreq( "http://openapi.baidu.com/public/2.0/bmt/"..
-              "translate?client_id=" .. API_KEY .. "&from="..
-              "auto&to=zh&q=" .. escape(msg),
+   dohttpreq( "https://api.microsofttranslator.com/v2/ajax.svc/TranslateArray2?" ..
+              "appId=%22TqlJ42aMMFnjskGGBSvpb-jcl4EMQF13g3szntA6FB58*%22&texts=%5B%22" ..
+              escape(msg) ..
+              "%22%5D&from=%22%22&to=%22" ..
+              translateTo .. "%22",
               function(data, id)
-                 log("Lookup received data.. " .. data)
-                 local trans = json.decode(data)
-                 local chn_msg = trans.trans_result[1].dst
-                 translateFrom = trans.from
+                 local trans = json.decode(string.match(data, "%[.*%]"))
+                 local chn_msg = trans[1].TranslatedText
+                 if trans[1].From ~= translateTo then
+                    translateFrom = trans[1].From
+                 end
                  log("Set reply translation to: " .. translateFrom)
-                 chn_msg = string.gsub(chn_msg, "u(....)", decodeUTF16)
                  displayMessage(channel_id, name, chn_msg, color, icon)
                  log("Translation Received: " .. trans.trans_result[1].dst)
               end
@@ -51,6 +56,7 @@ end
 
 Hooks:Add("ChatManagerOnReceiveMessage", "ChatManagerReceiveMessageTrans",
           function(channel_id, name, message, color, icon)
+             log("Translate lang is: " .. translateTo)
              -- Single player mode - you do not need translation
              if not Net:IsMultiplayer() then
                 log("Single player mode .. translation disabled")
@@ -83,24 +89,23 @@ function ChatManager.send_message(this, channel_id, sender, message)
    if Net:IsMultiplayer() and sender == managers.network:session():local_peer():name() then
       if ChnModOutTranslation then
          local msg = message
-         dohttpreq( "http://openapi.baidu.com/public/2.0/bmt/"..
-                    "translate?client_id=" .. API_KEY .. "&from="..
-                    "auto&" ..
-                    "to=" .. translateFrom ..
-                    "&q=" .. escape(msg),
-                    function(data, id)
-                       log("Send received data.. " .. data)
-                       local trans = json.decode(data)
-                       chn_msg = trans.trans_result[1].dst
-                       log("Got sending translation: " .. chn_msg)
-                       if translateFrom ~= "en" then
-                          chn_msg = string.gsub(chn_msg, "u(....)", decodeUTF16)
-                       end
-                       log("Sending Translation.. " .. chn_msg)
-                       this.orig.send_message(this, channel_id, sender, "[AutoTranslate] "
-                                                 .. chn_msg)
-                       log("Translation Received: " .. trans.trans_result[1].dst)
-                    end
+         dohttpreq(
+            "https://api.microsofttranslator.com/v2/ajax.svc/TranslateArray2?" ..
+            "appId=%22TqlJ42aMMFnjskGGBSvpb-jcl4EMQF13g3szntA6FB58*%22&texts=%5B%22" ..
+            escape(msg) ..
+            "%22%5D&from=%22%22&to=%22" ..
+            translateFrom .. "%22",
+            function(data, id)
+               local real_data = string.match(data, "%[.*%]")
+               log("Send received data.. " .. real_data)
+               local trans = json.decode(real_data)
+               local chn_msg = trans[1].TranslatedText
+               log("Got sending translation: " .. chn_msg)
+               log("Sending Translation.. " .. chn_msg)
+               this.orig.send_message(this, channel_id, sender, "[AutoTranslate] "
+                                         .. chn_msg)
+               log("Translation Received: " .. trans.trans_result[1].dst)
+            end
          )
       end
    end
